@@ -12,7 +12,7 @@ public class CityService {
     @Resource
     private CityDao cityDao;
 
-    public List<City> select() {
-        return cityDao.selectCities();
+    public List<City> select(int page, int count) {
+        return cityDao.selectCities((page - 1) * count, count);
     }
 }

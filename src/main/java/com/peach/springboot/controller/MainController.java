@@ -4,6 +4,7 @@ import com.peach.springboot.service.CityService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,9 +21,12 @@ public class MainController {
         return json.toString();
     }
 
-    @RequestMapping(value = "/cities", produces = "application/json;charset=UTF-8")
-    String cities() {
-        JSONArray arrays = JSONArray.fromObject(cityService.select());
+    @RequestMapping(value = "/cities/{page}/{count}", produces = "application/json;charset=UTF-8")
+    String cities(
+            @PathVariable("page") int page,
+            @PathVariable("count") int count) {
+
+        JSONArray arrays = JSONArray.fromObject(cityService.select(page, count));
         return arrays.toString();
     }
 }

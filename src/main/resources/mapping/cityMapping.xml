@@ -11,6 +11,6 @@
     </resultMap>
 
     <select id="selectCities" resultMap="basic" >
-        select * from city
+        select * from city limit #{begin},#{size}
     </select>
 </mapper>
