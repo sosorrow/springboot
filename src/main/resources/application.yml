@@ -6,6 +6,9 @@ spring:
     username: root
     password: xjt199384
 
+  resources:
+    static-locations: ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "classpath:/"]
+
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.peach.springboot.bean
