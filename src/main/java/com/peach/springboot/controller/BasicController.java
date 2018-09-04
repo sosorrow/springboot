@@ -8,6 +8,11 @@ public class BasicController {
 
     protected String page(Model model, String url) {
         model.addAttribute("contentPath", url);
-        return "/fragments/index";
+        return "/fragments/background/main";
+    }
+
+    protected String front(Model model, String url) {
+        model.addAttribute("contentPath", url);
+        return "/fragments/front/index";
     }
 }

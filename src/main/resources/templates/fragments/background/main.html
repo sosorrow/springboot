@@ -8,11 +8,11 @@
     <link type="text/css" href="/static/css/commons.css" rel="stylesheet" />
     <link type="text/css" href="/static/css/font-awesome/font-awesome.min.css" rel="stylesheet" />
     <!--[if IE 7]>
-    <link type="text/css" href="/static/css/font-awesome/font-awesome-ie7.min.css" rel="stylesheet" />
+    <link type="text/css" href="/static/css/font-awesome/font-awesome-ie7.min.css" rel="stylesheet"/>
     <![endif]-->
 
 </head>
 <body>
-    <div th:replace="fragments/main::contents(${#request.getAttribute('contentPath')})" ></div>
+<div th:replace="${#request.getAttribute('contentPath')}::body" ></div>
 </body>
 </html>

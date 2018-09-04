@@ -11,4 +11,9 @@ public class HtmlController extends BasicController {
     String index(Model model) {
         return page(model, "content");
     }
+
+    @RequestMapping("/front")
+    String front(Model model) {
+        return front(model, "content");
+    }
 }

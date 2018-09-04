@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" >
+
+    <link type="text/css" href="/static/css/commons.css" rel="stylesheet" />
+    <link type="text/css" href="/static/css/font-awesome/font-awesome.min.css" rel="stylesheet" />
+    <!--[if IE 7]>
+    <link type="text/css" href="/static/css/font-awesome/font-awesome-ie7.min.css" rel="stylesheet"/>
+    <![endif]-->
+
+</head>
+<body>
+    <div th:replace="fragments/front/main::contents(${#request.getAttribute('contentPath')})" ></div>
+</body>
+</html>
