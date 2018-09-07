@@ -1,26 +1,31 @@
 
-var CircleParticle = function (params) {
-    CircleParticle.prototype.__c = null;
-    CircleParticle.prototype.radius = 5;
-    CircleParticle.prototype.color = "#FFFFFF";
-    CircleParticle.prototype.stroke = 0;
-    CircleParticle.prototype.strokeShadow = 5;
+var CircleParticle = function () {
+    this.x = 0;
+    this.y = 0;
+    this.speed = 1;
+    this.radius = 0;
+    this.color = "#ffffff";
 
-    for (var key in params) {
-        if (this.hasOwnProperty(key + "")) this[key + ""] = params[key + ""];
-    }
+    this.draw = function () {
+        this.speed = Math.round(Math.sqrt(this.radius) * 10) / 10;
 
-    CircleParticle.prototype.drawTo = function (x, y) {
-        if (!this.__c) this.__c = canvas.getContext("2d");
-        var context = this.__c;
-        context.fillStyle = this.color;
+        this.y += this.speed;
         context.beginPath();
-        context.arc(x, y, this.radius, 0, 2 * Math.PI);
+
+        context.fillStyle = this.color;
+        context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        context.fill();
+
+        var gradient = context.createRadialGradient(this.x, this.y, this.radius, this.x, this.y, this.radius * 1.6);
+        gradient.addColorStop(0, this.color);
+        gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+        context.fillStyle = gradient;
+        context.arc(this.x, this.y, this.radius * 1.6, 0, 2 * Math.PI);
         context.fill();
     };
 
-    CircleParticle.prototype.play = function () {
-
+    this.set = function (key, value) {
+        if (this.hasOwnProperty(key + "")) this[key + ""] = value;
         return this;
     };
 

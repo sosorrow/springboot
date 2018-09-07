@@ -1,26 +1,36 @@
-var canvas, mainContext, _w, _h;
+var canvas, context, circles = [], block, count = 0, FPS = 0;
+
 (function () {
     canvas = document.querySelector("#main-canvas");
     document.body.onresize = function () {
-        canvas.width = document.body.offsetWidth;
-        canvas.height = document.body.offsetHeight;
+        canvas.width = document.body.clientWidth;
+        canvas.height = document.body.clientHeight;
     };
     document.body.onresize();
 
-    if (canvas.getContext) {
-        mainContext = canvas.getContext("2d");
-    }
+    context = canvas.getContext("2d");
 
-    new CircleParticle().drawTo(100, 100);
+    block = new Clock();
 
-    requestAnimationFrame(refill);
+    requestAnimationFrame(draw);
+    setInterval(function() {
+        document.querySelector("#FPS").innerHTML = "FPS: " + (count - FPS) + "<br/>COUNT: " + circles.length;
+        FPS = count;
+    }, 1000);
 })();
 
-function refill() {
-    mainContext.clearRect(0, 0, document.body.offsetWidth, document.body.offsetHeight);
-    mainContext.fillStyle = 0x000000;
-    mainContext.fillRect(0, 0, document.body.offsetWidth, document.body.offsetHeight);
-    mainContext.fill();
+function draw() {
+    if (count++ % 2 === 0) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
 
-    requestAnimationFrame(refill);
+        // circles.push(new CircleParticle().set("x", Math.random() * document.body.clientWidth).set("radius", 3 + Math.round(Math.random() * 6)));
+        // for (var i in circles) {
+        //     if (circles[i] && circles[i].y + circles[i].radius <= canvas.height) circles[i].draw();
+        //     else circles[i] = null;
+        // }
+
+        block.draw();
+    }
+
+    requestAnimationFrame(draw);
 }
