@@ -10,11 +10,11 @@ public class UserSecurityConfigration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity auth) throws Exception {
         auth.formLogin()
-        .loginPage("/index")
+        .loginPage("/")
         .loginProcessingUrl("/user/login")
         .and()
         .authorizeRequests()
-        .antMatchers("/index", "/static/**").permitAll()
+        .antMatchers("/", "/templates/**", "/index", "/static/**").permitAll()
         .anyRequest()
         .authenticated()
         .and()

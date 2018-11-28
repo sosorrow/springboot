@@ -1,4 +1,4 @@
-package com.peach.springboot.controller;
+package com.peach.springboot.controller.background;
 
 import com.peach.springboot.service.CityService;
 import net.sf.json.JSONArray;
@@ -13,7 +13,7 @@ public class MainController {
     @Autowired
     private CityService cityService;
 
-    @RequestMapping(value = "/", produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/init", produces = "application/json;charset=UTF-8")
     String init() {
         JSONObject json = new JSONObject();
         json.put("status", 1);
